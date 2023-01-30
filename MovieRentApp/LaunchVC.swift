@@ -9,54 +9,51 @@ import UIKit
 
 class LaunchVC: UIViewController {
 
-    let url1 = URL(string: "https://x-mode.co.il/exam/allMovies/generalDeclaration.txt")
-    let url2 = URL(string: "https://x-mode.co.il/exam/allMovies/allMovies.txt#")
+    let urlModel = URLModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        uploadFomURL1(from: url1!, on: UIViewController())
-        uploadFomURL2(from: url2!, on: UIViewController())
+        uploadFomURL1(from: urlModel.url1!)
+        uploadFomURL2(from: urlModel.url2!)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    func goToNextPage() {
-        let advertisingVC = storyboard?.instantiateViewController (withIdentifier: "AdvertisingVC") as! AdvertisingVC
-        present (advertisingVC, animated: true)
-    }
-    func uploadFomURL1(from url: URL, on viewController: UIViewController) {
-        let session = URLSession.shared.dataTask(with: url1!) { data, response, error in
+   
+    func uploadFomURL1(from url: URL) {
+        let session = URLSession.shared.dataTask(with: urlModel.url1!) { data, response, error in
             if let error = error {
                 print("There was an error from url1: \(error.localizedDescription)")
+                return
             } else {
+
                 let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: [])
                 print("The response of url1: \(jsonRes)")
             }
-            // Store the data on the device
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.goToNextPage()
             }
         }.resume()
     }
-    
-    func uploadFomURL2(from url: URL, on viewController: UIViewController) {
-        let session = URLSession.shared.dataTask(with: url2!) { data, response, error in
+
+    func uploadFomURL2(from url: URL) {
+        let session = URLSession.shared.dataTask(with: urlModel.url2!) { data, response, error in
             if let error = error {
                 print("There was an error from url2: \(error.localizedDescription)")
             } else {
                 let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: [])
                 print("The response of url2: \(jsonRes)")
+//                self.parseJSON(movieData: jsonRes as! Data)
             }
             // Store the data on the device
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.goToNextPage()
             }
         }.resume()
     }
 
 
+    func goToNextPage() {
+        let advertisingVC = storyboard?.instantiateViewController (withIdentifier: "AdvertisingVC") as! AdvertisingVC
+        present (advertisingVC, animated: true)
+    }
 }
 
