@@ -6,16 +6,23 @@
 //
 
 import Foundation
-
-
-struct Banner: Decodable {
-    let isImage: Bool
-    let imageUrl: String?
-    let videoUrl: String?
-    
-    private enum CodingKeys: String, CodingKey {
-        case isImage = "isImage"
-        case imageUrl = "imageUrl"
-        case videoUrl = "videoUrl"
+extension Array {
+    public func toDictionary<Key: Hashable>(with selectKey: (Element) -> Key) -> [Key:Element] {
+        var dict = [Key:Element]()
+        for element in self {
+            dict[selectKey(element)] = element
+        }
+        return dict
     }
 }
+struct BannerData: Decodable {
+    var banner: Banner
+    }
+struct Banner: Decodable  {
+        var isImage: String
+        var imageUrl: String
+        var videoUrl: String
+    }
+
+
+

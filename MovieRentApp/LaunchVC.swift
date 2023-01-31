@@ -24,9 +24,15 @@ class LaunchVC: UIViewController {
                 print("There was an error from url1: \(error.localizedDescription)")
                 return
             } else {
-
-                let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: [])
-                print("The response of url1: \(jsonRes)")
+                let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
+                var goodJson: [String:Any] = [:]
+                        let banner = jsonRes?["banner"] as? [[String:Any]]
+                        for json in banner ?? [] {
+                            for (key, value) in json {
+                                goodJson[key] = value
+                            }
+                        }
+                        print("goodJson \(goodJson)") //use goodJson
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.goToNextPage()
