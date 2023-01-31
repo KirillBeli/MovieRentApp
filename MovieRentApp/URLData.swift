@@ -16,7 +16,7 @@ extension Array {
     }
 }
 struct BannerData: Decodable {
-    var banner: Banner
+    var banner: [Banner]
     }
 struct Banner: Decodable  {
         var isImage: String
@@ -24,5 +24,14 @@ struct Banner: Decodable  {
         var videoUrl: String
     }
 
+struct MoviesData: Decodable {
+    var movies: [Movies]
+}
+struct Movies: Decodable {
+    var id: Int
+    var name: String
+    var year: String
+    var category: String
+}
 
 

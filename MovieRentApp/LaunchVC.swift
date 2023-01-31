@@ -26,13 +26,13 @@ class LaunchVC: UIViewController {
             } else {
                 let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
                 var goodJson: [String:Any] = [:]
-                        let banner = jsonRes?["banner"] as? [[String:Any]]
-                        for json in banner ?? [] {
-                            for (key, value) in json {
-                                goodJson[key] = value
-                            }
-                        }
-                        print("goodJson \(goodJson)") //use goodJson
+                let banner = jsonRes?["banner"] as? [[String:Any]]
+                for json in banner ?? [] {
+                    for (key, value) in json {
+                        goodJson[key] = value
+                    }
+                }
+                print("goodJson1 \(goodJson)") //use goodJson
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.goToNextPage()
@@ -45,11 +45,16 @@ class LaunchVC: UIViewController {
             if let error = error {
                 print("There was an error from url2: \(error.localizedDescription)")
             } else {
-                let jsonRes = try? JSONSerialization.jsonObject(with: data!, options: [])
-                print("The response of url2: \(jsonRes)")
-//                self.parseJSON(movieData: jsonRes as! Data)
+                let jsonRes2 = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
+                var goodJson: [String:Any] = [:]
+                let movies = jsonRes2?["movies"] as? [[String:Any]]
+                for json in movies ?? [] {
+                    for (key, value) in json {
+                        goodJson[key] = value
+                    }
+                }
+                print("goodJson2 \(goodJson)") //use goodJson
             }
-            // Store the data on the device
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.goToNextPage()
             }
