@@ -10,6 +10,7 @@ import UIKit
 class LaunchVC: UIViewController {
 
     let urlModel = URLModel()
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,7 @@ class LaunchVC: UIViewController {
     
    
     func uploadFomURL1(from url: URL) {
+//        var bannerData = BannerData?.self
         let session = URLSession.shared.dataTask(with: urlModel.url1!) { data, response, error in
             if let error = error {
                 print("There was an error from url1: \(error.localizedDescription)")
@@ -41,11 +43,12 @@ class LaunchVC: UIViewController {
     }
 
     func uploadFomURL2(from url: URL) {
-        let session = URLSession.shared.dataTask(with: urlModel.url2!) { data, response, error in
+        
+        let session = URLSession.shared.dataTask(with: urlModel.url2!) { moviesData, response, error in
             if let error = error {
                 print("There was an error from url2: \(error.localizedDescription)")
             } else {
-                let jsonRes2 = try? JSONSerialization.jsonObject(with: data!, options: []) as? [String:Any]
+                let jsonRes2 = try? JSONSerialization.jsonObject(with: moviesData!, options: []) as? [String:Any] 
                 var goodJson: [String:Any] = [:]
                 let movies = jsonRes2?["movies"] as? [[String:Any]]
                 for json in movies ?? [] {

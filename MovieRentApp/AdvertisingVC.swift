@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AdvertisingVC: UIViewController, URLSessionDelegate, URLSessionDownloadDelegate {
+class AdvertisingVC: UIViewController, URLSessionDelegate {
     
     @IBOutlet weak var imageUpload: UIImageView!
     
@@ -16,7 +16,9 @@ class AdvertisingVC: UIViewController, URLSessionDelegate, URLSessionDownloadDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        timerForNextPage()
     }
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         downloadImage(urlString: url)
@@ -27,9 +29,22 @@ class AdvertisingVC: UIViewController, URLSessionDelegate, URLSessionDownloadDel
             print("error in url")
             return }
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
-        URLSession.shared.downloadTask(with: url).resume()
-        
+        session.downloadTask(with: url).resume()
     }
+    
+    func timerForNextPage() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
+            self.goToNextPage()
+        }
+    }
+    //MARK: - start from here to check the options to segue.
+    func goToNextPage() {
+        let MainVC = storyboard?.instantiateViewController (withIdentifier: "MainVC") as! MainVC
+        present (MainVC, animated: true)
+    }
+}
+
+extension AdvertisingVC: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let data = try? Data(contentsOf: location) else {
             print("we didn't get the data")
@@ -37,13 +52,6 @@ class AdvertisingVC: UIViewController, URLSessionDelegate, URLSessionDownloadDel
         }
         let image = UIImage(data: data)
         imageUpload.image = image
-        
-        
     }
-    
 }
-
-
-    
-
 

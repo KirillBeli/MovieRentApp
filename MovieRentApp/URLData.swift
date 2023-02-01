@@ -6,28 +6,20 @@
 //
 
 import Foundation
-extension Array {
-    public func toDictionary<Key: Hashable>(with selectKey: (Element) -> Key) -> [Key:Element] {
-        var dict = [Key:Element]()
-        for element in self {
-            dict[selectKey(element)] = element
-        }
-        return dict
-    }
-}
-struct BannerData: Decodable {
+
+struct BannerData: Codable {
     var banner: [Banner]
     }
-struct Banner: Decodable  {
+struct Banner: Codable  {
         var isImage: String
         var imageUrl: String
         var videoUrl: String
     }
 
-struct MoviesData: Decodable {
+struct MoviesData: Codable {
     var movies: [Movies]
 }
-struct Movies: Decodable {
+struct Movies: Codable {
     var id: Int
     var name: String
     var year: String
