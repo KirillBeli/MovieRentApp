@@ -30,10 +30,11 @@ class AdvertisingVC: UIViewController, URLSessionDelegate {
             return }
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
         session.downloadTask(with: url).resume()
+        imageUpload.backgroundColor = UIColor.black
     }
     
     func timerForNextPage() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0){
             self.goToNextPage()
         }
     }

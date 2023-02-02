@@ -7,23 +7,21 @@
 
 import Foundation
 
-struct BannerData: Codable {
+struct BannerData: Decodable {
     var banner: [Banner]
     }
-struct Banner: Codable  {
-        var isImage: String
+
+struct Banner: Decodable  {
+        var isImage: Bool
         var imageUrl: String
         var videoUrl: String
     }
 
-struct MoviesData: Codable {
-    var movies: [Movies]
+struct MoviesData: Decodable {
+    let movies: [Movies]
 }
-struct Movies: Codable {
-    var id: Int
-    var name: String
-    var year: String
-    var category: String
+struct Movies: Decodable {
+    let id, name, year, category: String
 }
 
 
