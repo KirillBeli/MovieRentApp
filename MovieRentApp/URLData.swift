@@ -7,21 +7,39 @@
 
 import Foundation
 
-struct BannerData: Decodable {
-    var banner: [Banner]
-    }
+struct BannerData: Codable {
+    let banner: [Banner]
+}
 
-struct Banner: Decodable  {
-        var isImage: Bool
-        var imageUrl: String
-        var videoUrl: String
-    }
+struct Banner: Codable {
+    let isImage, imageUrl, videoUrl: String?
+//    let isImage: String?
+//    let imageUrl: String?
+//    let videoUrl: String?
 
-struct MoviesData: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case isImage = "isImage"
+        case imageUrl = "imageUrl"
+        case videoUrl = "videoUrl"
+    }
+}
+
+struct MoviesData: Codable {
     let movies: [Movies]
 }
-struct Movies: Decodable {
-    let id, name, year, category: String
+struct Movies: Codable {
+//    let id, name, year, category: String
+    let id: String
+    let name: String
+    let year: String
+    let category: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case year = "year"
+        case category = "category"
+    }
 }
 
 
