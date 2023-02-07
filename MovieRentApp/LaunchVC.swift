@@ -16,11 +16,13 @@ class LaunchVC: UIViewController {
         
         uploadFomURL1(url: urlModel.url1!) { jsonRes1 in
             print(jsonRes1.banner[1].imageUrl!)
-        }
+         }
         uploadFomURL2(url: urlModel.url2!) { jsonRes2 in
             print(jsonRes2.movies)
         }
     }
+    
+    
     
     let decoder = JSONEncoder()
     
@@ -68,16 +70,13 @@ class LaunchVC: UIViewController {
 //        }.resume()
 //    }
     
+    
     func uploadFomURL2(url: URL, completion: @escaping (MoviesData) -> Void) {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: urlModel.url2!) { jsonData, response, error in
             if jsonData != nil && error == nil {
                 do {
                     let jsonRes2 = try JSONDecoder().decode(MoviesData.self, from: jsonData!)
-//                    let id = jsonRes2.movies[0].id
-//                    let name = jsonRes2.movies[0].name
-//                    let year = jsonRes2.movies[0].year
-//                    let categoty = jsonRes2.movies[0].category
                     self.decoder.outputFormatting = .prettyPrinted
                     completion(jsonRes2)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
@@ -95,11 +94,6 @@ class LaunchVC: UIViewController {
         present (advertisingVC, animated: true)
     }
 }
-
-
-
-
-
 
 
 //    func uploadFomURL2(from url: URL) {

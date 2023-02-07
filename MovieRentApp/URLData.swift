@@ -12,10 +12,9 @@ struct BannerData: Codable {
 }
 
 struct Banner: Codable {
-    let isImage, imageUrl, videoUrl: String?
-//    let isImage: String?
-//    let imageUrl: String?
-//    let videoUrl: String?
+    let isImage: String?
+    let imageUrl: String?
+    let videoUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case isImage = "isImage"

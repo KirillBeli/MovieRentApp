@@ -11,7 +11,7 @@ import UIKit
 class AdvertisingVC: UIViewController, URLSessionDelegate {
     
     @IBOutlet weak var imageUpload: UIImageView!
-    
+
     let url = "https://x-mode.co.il/exam/allMovies/bannerImage.jpg"
     
     override func viewDidLoad() {
