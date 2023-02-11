@@ -40,8 +40,9 @@ class AdvertisingVC: UIViewController, URLSessionDelegate {
     }
     //MARK: - start from here to check the options to segue.
     func goToNextPage() {
-        let MainVC = storyboard?.instantiateViewController (withIdentifier: "MainVC") as! MainVC
-        present (MainVC, animated: true)
+        performSegue(withIdentifier: "MainVC", sender: nil)
+//        let MainVC = storyboard?.instantiateViewController (withIdentifier: "MainVC") as! MainVC
+//        present (MainVC, animated: true)
     }
 }
 

@@ -22,12 +22,12 @@ struct Banner: Codable {
         case videoUrl = "videoUrl"
     }
 }
+//let bannerData:BannerData(banner: [Banner(isImage: "isImage", imageUrl: "imageUrl", videoUrl: "videoUrl")])
 
 struct MoviesData: Codable {
     let movies: [Movies]
 }
 struct Movies: Codable {
-//    let id, name, year, category: String
     let id: String
     let name: String
     let year: String

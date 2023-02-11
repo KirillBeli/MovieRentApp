@@ -90,8 +90,9 @@ class LaunchVC: UIViewController {
     }
     
     func goToNextPage() {
-        let advertisingVC = storyboard?.instantiateViewController (withIdentifier: "AdvertisingVC") as! AdvertisingVC
+        guard let advertisingVC = storyboard?.instantiateViewController (withIdentifier: "AdvertisingVC") as? AdvertisingVC else { return }
         present (advertisingVC, animated: true)
+        
     }
 }
 
