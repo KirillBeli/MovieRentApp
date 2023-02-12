@@ -10,15 +10,20 @@ import UIKit
 class LaunchVC: UIViewController {
     
     var urlModel = URLModel()
+    var bannerData = BannerData(banner: [Banner(isImage: String(), imageUrl: String(), videoUrl: String())])
+    var moviesData = MoviesData(movies: [Movies(id: String(), name: String(), year: String(), category: String())])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         uploadFomURL1(url: urlModel.url1!) { jsonRes1 in
-            print(jsonRes1.banner[1].imageUrl!)
+            self.bannerData = jsonRes1
          }
         uploadFomURL2(url: urlModel.url2!) { jsonRes2 in
-            print(jsonRes2.movies)
+            self.moviesData = jsonRes2
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            self.goToNextPage()
         }
     }
     
@@ -35,10 +40,6 @@ class LaunchVC: UIViewController {
                     self.decoder.outputFormatting = .prettyPrinted
                     let imageUrl = jsonRes1.banner[1].imageUrl!
                     completion(jsonRes1)
-//                    print("imageUrl is: \(imageUrl)")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                        self.goToNextPage()
-                    }
                 } catch {
                     print("parse error \(error)")
                 }
@@ -79,9 +80,6 @@ class LaunchVC: UIViewController {
                     let jsonRes2 = try JSONDecoder().decode(MoviesData.self, from: jsonData!)
                     self.decoder.outputFormatting = .prettyPrinted
                     completion(jsonRes2)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                        self.goToNextPage()
-                    }
                 } catch {
                     print("parse error \(error.localizedDescription)")
                 }
@@ -90,9 +88,7 @@ class LaunchVC: UIViewController {
     }
     
     func goToNextPage() {
-        guard let advertisingVC = storyboard?.instantiateViewController (withIdentifier: "AdvertisingVC") as? AdvertisingVC else { return }
-        present (advertisingVC, animated: true)
-        
+        performSegue(withIdentifier: "AdvertisingVC", sender: nil)
     }
 }
 

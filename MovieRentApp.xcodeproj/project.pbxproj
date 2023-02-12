@@ -18,6 +18,7 @@
 		279F2C7E2986DAA90012D6DA /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2C7D2986DAA90012D6DA /* MainVC.swift */; };
 		279F2C802986DADD0012D6DA /* URLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2C7F2986DADD0012D6DA /* URLModel.swift */; };
 		279F2C82298852D40012D6DA /* URLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2C81298852D40012D6DA /* URLData.swift */; };
+		27EE07E1299943C0007E559A /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EE07E0299943C0007E559A /* DetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		279F2C7D2986DAA90012D6DA /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		279F2C7F2986DADD0012D6DA /* URLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLModel.swift; sourceTree = "<group>"; };
 		279F2C81298852D40012D6DA /* URLData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLData.swift; sourceTree = "<group>"; };
+		27EE07E0299943C0007E559A /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				279F2C672986D89E0012D6DA /* LaunchVC.swift */,
 				279F2C7B2986D9BA0012D6DA /* AdvertisingVC.swift */,
 				279F2C7D2986DAA90012D6DA /* MainVC.swift */,
+				27EE07E0299943C0007E559A /* DetailsVC.swift */,
 				279F2C692986D89E0012D6DA /* Main.storyboard */,
 				279F2C6F2986D8A30012D6DA /* Assets.xcassets */,
 				279F2C712986D8A30012D6DA /* LaunchScreen.storyboard */,
@@ -165,6 +168,7 @@
 				279F2C682986D89E0012D6DA /* LaunchVC.swift in Sources */,
 				279F2C7E2986DAA90012D6DA /* MainVC.swift in Sources */,
 				279F2C7C2986D9BA0012D6DA /* AdvertisingVC.swift in Sources */,
+				27EE07E1299943C0007E559A /* DetailsVC.swift in Sources */,
 				279F2C642986D89E0012D6DA /* AppDelegate.swift in Sources */,
 				279F2C82298852D40012D6DA /* URLData.swift in Sources */,
 				279F2C662986D89E0012D6DA /* SceneDelegate.swift in Sources */,

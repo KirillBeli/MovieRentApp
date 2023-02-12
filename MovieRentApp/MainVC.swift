@@ -7,28 +7,21 @@
 
 import UIKit
 
-class MainVC: UIViewController, UITableViewDataSource {
+class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var launchVC = LaunchVC()
     var urlModel = URLModel()
     var bannerData = BannerData(banner: [Banner(isImage: String(), imageUrl: String(), videoUrl: String())])
     var moviesData = MoviesData(movies: [Movies(id: String(), name: String(), year: String(), category: String())])
-//    init?(launchVC: LaunchVC = LaunchVC(), urlModel: URLModel = URLModel(), bannerData: BannerData = BannerData(banner: [Banner(isImage: String(), imageUrl: String(), videoUrl: String())]), moviesData: MoviesData = MoviesData(movies: [Movies(id: String(), name: String(), year: String(), category: String())])) {
-//        super.init(coder: NSCoder())
-//        self.launchVC = launchVC
-//        self.urlModel = urlModel
-//        self.bannerData = bannerData
-//        self.moviesData = moviesData
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    var detailsData = DetailsData(id: String(), name: String(), year: String(), category: String(), description: String(), imageURL: String(), promoURL: String(), rate: String(), hour: String())
+    let decoder = JSONEncoder()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         launchVC.uploadFomURL2(url: urlModel.url2!) { jsonRes2 in
             self.moviesData = jsonRes2
@@ -38,10 +31,11 @@ class MainVC: UIViewController, UITableViewDataSource {
         }
     }
     
+    //MARK: - Number Of Rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moviesData.movies.count
     }
-    
+    //MARK: - Cell for Rows
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell?.textLabel?.text = moviesData.movies[indexPath.row].name
@@ -49,14 +43,42 @@ class MainVC: UIViewController, UITableViewDataSource {
         return cell!
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    var urlDetailsNew = URL(string: String())
     
+    //MARK: - Did select row at
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let urlDeatilsId = "\(moviesData.movies[indexPath.row].id).txt"
+        let urlDetails = URL(string: "\(urlModel.urlDetailsBase)\(urlDeatilsId)")
+        urlDetailsNew = urlDetails
+    }
+    
+    //MARK: - URLSession from URLDetails
+    func uploadFomURLDetails(url: URL, completion: @escaping (DetailsData) -> Void) {
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: urlDetailsNew!) { jsonData, response, error in
+            if jsonData != nil && error == nil {
+                do {
+                    let jsonResDetails = try JSONDecoder().decode(DetailsData.self, from: jsonData!)
+                    self.decoder.outputFormatting = .prettyPrinted
+                    completion(jsonResDetails)
+                    //print(jsonResDetails)
+                } catch {
+                    print("parse error \(error)")
+                }
+            }
+        }.resume()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        uploadFomURLDetails(url: urlDetailsNew!) { jsonResDetails in
+            self.detailsData = jsonResDetails
+            //                        print(jsonResDetails)
+            //                        print(self.detailsData)
+            //                    print(self.urlDetailsNew!)
+        }
+    }
 }
+

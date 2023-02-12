@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+//MARK: - Banner
 struct BannerData: Codable {
     let banner: [Banner]
 }
@@ -22,8 +22,7 @@ struct Banner: Codable {
         case videoUrl = "videoUrl"
     }
 }
-//let bannerData:BannerData(banner: [Banner(isImage: "isImage", imageUrl: "imageUrl", videoUrl: "videoUrl")])
-
+//MARK: - Movies
 struct MoviesData: Codable {
     let movies: [Movies]
 }
@@ -40,5 +39,18 @@ struct Movies: Codable {
         case category = "category"
     }
 }
-
-
+//MARK: - Details
+struct DetailsData: Codable {
+    let id, name, year, category: String
+    let description: String
+    let imageURL: String
+    let promoURL: String
+    let rate, hour: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, year, category, description
+        case imageURL = "imageUrl"
+        case promoURL = "promoUrl"
+        case rate, hour
+    }
+}
