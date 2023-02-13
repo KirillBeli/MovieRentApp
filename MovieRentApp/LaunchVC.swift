@@ -12,6 +12,7 @@ class LaunchVC: UIViewController {
     var urlModel = URLModel()
     var bannerData = BannerData(banner: [Banner(isImage: String(), imageUrl: String(), videoUrl: String())])
     var moviesData = MoviesData(movies: [Movies(id: String(), name: String(), year: String(), category: String())])
+    let decoder = JSONEncoder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,7 @@ class LaunchVC: UIViewController {
         }
     }
     
-    
-    
-    let decoder = JSONEncoder()
-    
+   //MARK: - URLSession BannerURL
     func uploadFomURL1(url: URL, completion: @escaping (BannerData) -> Void) {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: urlModel.url1!) { jsonData, response, error in
@@ -71,7 +69,7 @@ class LaunchVC: UIViewController {
 //        }.resume()
 //    }
     
-    
+    //MARK: - URLSession MoviesURL
     func uploadFomURL2(url: URL, completion: @escaping (MoviesData) -> Void) {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: urlModel.url2!) { jsonData, response, error in
@@ -81,12 +79,12 @@ class LaunchVC: UIViewController {
                     self.decoder.outputFormatting = .prettyPrinted
                     completion(jsonRes2)
                 } catch {
-                    print("parse error \(error.localizedDescription)")
+                    print("parse error \(error)")
                 }
             }
         }.resume()
     }
-    
+    //MARK: - Segue to next view
     func goToNextPage() {
         performSegue(withIdentifier: "AdvertisingVC", sender: nil)
     }

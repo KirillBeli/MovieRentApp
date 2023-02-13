@@ -43,42 +43,35 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return cell!
     }
     
-    var urlDetailsNew = URL(string: String())
-    
     //MARK: - Did select row at
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let urlDeatilsId = "\(moviesData.movies[indexPath.row].id).txt"
-        let urlDetails = URL(string: "\(urlModel.urlDetailsBase)\(urlDeatilsId)")
-        urlDetailsNew = urlDetails
+        let urlDetails = "\(urlModel.urlDetailsBase)\(urlDeatilsId)"
+//        let urlDetails = URL(string: "\(urlModel.urlDetailsBase)\(urlDeatilsId)")
+       
+        let detailsVC = DetailsVC()
+        detailsVC.urlDetails = urlDetails
+//        print(detailsVC.urlDetails)
+        
     }
     
-    //MARK: - URLSession from URLDetails
-    func uploadFomURLDetails(url: URL, completion: @escaping (DetailsData) -> Void) {
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: urlDetailsNew!) { jsonData, response, error in
-            if jsonData != nil && error == nil {
-                do {
-                    let jsonResDetails = try JSONDecoder().decode(DetailsData.self, from: jsonData!)
-                    self.decoder.outputFormatting = .prettyPrinted
-                    completion(jsonResDetails)
-                    //print(jsonResDetails)
-                } catch {
-                    print("parse error \(error)")
-                }
-            }
-        }.resume()
-    }
+    
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        uploadFomURLDetails(url: urlDetailsNew!) { jsonResDetails in
-            self.detailsData = jsonResDetails
-            //                        print(jsonResDetails)
-            //                        print(self.detailsData)
-            //                    print(self.urlDetailsNew!)
-        }
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsVC
+//        print(vc.urlDetails)
+        
+        
+//        uploadFomURLDetails(url: urlDetails!) { jsonResDetails in
+//            self.detailsData = jsonResDetails
+//            //                        print(jsonResDetails)
+//            //                        print(self.detailsData)
+//            //                    print(self.urlDetailsNew!)
+//        }
     }
 }
 

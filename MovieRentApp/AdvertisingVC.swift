@@ -24,7 +24,7 @@ class AdvertisingVC: UIViewController, URLSessionDelegate {
         super.viewWillAppear(animated)
         downloadImage(urlString: url)
     }
-    
+    //MARK: - func of dowload
     func downloadImage(urlString: String) {
         guard let url = URL(string: url) else {
             print("error in url")
@@ -39,14 +39,14 @@ class AdvertisingVC: UIViewController, URLSessionDelegate {
             self.goToNextPage()
         }
     }
-    //MARK: - start from here to check the options to segue.
+    //MARK: - Segue to next view
     func goToNextPage() {
         performSegue(withIdentifier: "MainVC", sender: nil)
 //        let MainVC = storyboard?.instantiateViewController (withIdentifier: "MainVC") as! MainVC
 //        present (MainVC, animated: true)
     }
 }
-
+//MARK: - Download URLSession of image
 extension AdvertisingVC: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let data = try? Data(contentsOf: location) else {

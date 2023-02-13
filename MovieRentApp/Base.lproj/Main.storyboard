@@ -148,7 +148,7 @@
         <!--DetailsVC-->
         <scene sceneID="83x-Z5-Gbe">
             <objects>
-                <viewController id="S0S-dV-JWF" customClass="DetailsVC" customModule="MovieRentApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="S0S-dV-JWF" customClass="DetailsVC" customModule="MovieRentApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aby-3g-V3x">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
