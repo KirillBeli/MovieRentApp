@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27950B67299EC4180081C96B /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27950B66299EC4180081C96B /* RequestManager.swift */; };
 		279F2C642986D89E0012D6DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2C632986D89E0012D6DA /* AppDelegate.swift */; };
 		279F2C662986D89E0012D6DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2C652986D89E0012D6DA /* SceneDelegate.swift */; };
 		279F2C682986D89E0012D6DA /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2C672986D89E0012D6DA /* LaunchVC.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27950B66299EC4180081C96B /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		279F2C602986D89E0012D6DA /* MovieRentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		279F2C632986D89E0012D6DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		279F2C652986D89E0012D6DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			children = (
 				279F2C7F2986DADD0012D6DA /* URLModel.swift */,
 				279F2C81298852D40012D6DA /* URLData.swift */,
+				27950B66299EC4180081C96B /* RequestManager.swift */,
 				279F2C672986D89E0012D6DA /* LaunchVC.swift */,
 				279F2C7B2986D9BA0012D6DA /* AdvertisingVC.swift */,
 				279F2C7D2986DAA90012D6DA /* MainVC.swift */,
@@ -169,6 +172,7 @@
 				279F2C7E2986DAA90012D6DA /* MainVC.swift in Sources */,
 				279F2C7C2986D9BA0012D6DA /* AdvertisingVC.swift in Sources */,
 				27EE07E1299943C0007E559A /* DetailsVC.swift in Sources */,
+				27950B67299EC4180081C96B /* RequestManager.swift in Sources */,
 				279F2C642986D89E0012D6DA /* AppDelegate.swift in Sources */,
 				279F2C82298852D40012D6DA /* URLData.swift in Sources */,
 				279F2C662986D89E0012D6DA /* SceneDelegate.swift in Sources */,

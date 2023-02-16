@@ -11,27 +11,37 @@ import UIKit
 class AdvertisingVC: UIViewController, URLSessionDelegate {
     
     @IBOutlet weak var imageUpload: UIImageView!
-
-    let url = "https://x-mode.co.il/exam/allMovies/bannerImage.jpg"
+   
+    var urlModel = URLModel()
+    var launchVC = LaunchVC()
+    var bannerData = BannerData(banner: [Banner(isImage: String(), imageUrl: String(), videoUrl: String())])
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageUpload.backgroundColor = UIColor.black
         timerForNextPage()
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
-   
-    override func viewWillAppear(_ animated: Bool) {
+    
+    @IBAction override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        downloadImage(urlString: url)
+        
+        RequestManager.shared.uploadFomURL1(url: urlModel.url1!) { jsonRes1 in
+            self.bannerData = jsonRes1
+            var imageUrl = jsonRes1.banner[1].imageUrl!
+            if !imageUrl.contains("https") {
+                imageUrl = imageUrl.replacingOccurrences(of: "http", with: "https")
+            }
+            imageUrl = imageUrl.replacingOccurrences(of: ".jpg.jpg", with: ".jpg")
+            let url = URL(string: "\(imageUrl)")
+            self.downloadImage(url: url!)
+         }
     }
-    //MARK: - func of dowload
-    func downloadImage(urlString: String) {
-        guard let url = URL(string: url) else {
-            print("error in url")
-            return }
+  
+    //MARK: - Download Session
+    func downloadImage(url: URL) {
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
         session.downloadTask(with: url).resume()
-        imageUpload.backgroundColor = UIColor.black
     }
     
     func timerForNextPage() {

@@ -17,13 +17,13 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let decoder = JSONEncoder()
     
     @IBOutlet weak var tableView: UITableView!
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.setHidesBackButton(true, animated: true)
         
-        launchVC.uploadFomURL2(url: urlModel.url2!) { jsonRes2 in
+        RequestManager.shared.uploadFomURL2(url: urlModel.url2!) { jsonRes2 in
             self.moviesData = jsonRes2
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -43,44 +43,24 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return cell!
     }
    
-    var urlDetailsString: String = ""
     //MARK: - Did select row at
-   @IBAction func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @IBAction func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        urlDetails = tableView.didselec
         let urlDeatilsId = "\(moviesData.movies[indexPath.row].id).txt"
-        urlDetailsString = "\(urlModel.urlDetailsBase)\(urlDeatilsId)"
-
-        print("urlDetailsString:\(urlDetailsString)")
-        
-    }
-    
-    //MARK: - URLSession from URLDetails
-    func uploadFomURLDetails(url: URL, completion: @escaping (DetailsData) -> Void) {
-        let session = URLSession.shared
+        let urlDetailsString = "\(urlModel.urlDetailsBase)\(urlDeatilsId)"
         let urlDetails = URL(string: "\(urlDetailsString)")
-        let dataTask = session.dataTask(with: urlDetails!) { jsonData, response, error in
-            if jsonData != nil && error == nil {
-                do {
-                    let jsonResDetails = try JSONDecoder().decode(DetailsData.self, from: jsonData!)
-                    self.decoder.outputFormatting = .prettyPrinted
-                    completion(jsonResDetails)
-                } catch {
-                    print("parse error \(error)")
+        RequestManager.shared.uploadFomURLDetails(url: urlDetails!) { jsonResDetails in
+            DispatchQueue.main.async {
+                let detailsData = jsonResDetails
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "DetailsVC")
+                if let detailsVC = vc as? DetailsVC {
+                    detailsVC.detailsData = detailsData
+                    self.navigationController?.pushViewController(detailsVC , animated: true)
                 }
             }
-        }.resume()
+        }
     }
    
-   @IBAction override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-//        let urlDetails = URL(string: "\(urlDetailsString)")
-//       let detailsVC: DetailsVC = DetailsVC(nibName: nil, bundle: nil)
-//        uploadFomURLDetails(url: urlDetails!) { jsonResDetails in
-//            self.detailsData = jsonResDetails
-//            detailsVC.detailsData = self.detailsData
-//            print(self.detailsData)
-//        }
-    }
 }
 

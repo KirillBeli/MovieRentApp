@@ -104,9 +104,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="S0S-dV-JWF" kind="show" identifier="DetailsSegue" id="6Zl-wt-uSz"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -205,13 +202,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="bw0-LQ-nLq"/>
                     <connections>
-                        <outlet property="categoryLabel" destination="S5s-Uj-mIi" id="vjW-4g-C32"/>
-                        <outlet property="descriptionLabel" destination="Vfo-xl-RAP" id="VUm-YU-rQf"/>
-                        <outlet property="movieImage" destination="fZF-ry-4a5" id="G6z-Ba-v8q"/>
-                        <outlet property="nameLabel" destination="Mia-wJ-wze" id="wR3-l1-q1L"/>
-                        <outlet property="rateLabel" destination="Ucf-Vz-bHJ" id="oRo-E9-vUm"/>
-                        <outlet property="trailerURLLabel" destination="6py-LY-0GV" id="OZW-OQ-Gfv"/>
-                        <outlet property="yearLabel" destination="ihw-tl-OHx" id="JYQ-wT-vHk"/>
+                        <outlet property="categoryLabel" destination="S5s-Uj-mIi" id="wZP-Cg-srf"/>
+                        <outlet property="descriptionLabel" destination="Vfo-xl-RAP" id="nNj-kU-fRl"/>
+                        <outlet property="movieImage" destination="fZF-ry-4a5" id="SLu-vW-vNF"/>
+                        <outlet property="nameLabel" destination="Mia-wJ-wze" id="LaZ-Is-4X4"/>
+                        <outlet property="rateLabel" destination="Ucf-Vz-bHJ" id="opI-Sa-HNO"/>
+                        <outlet property="trailerURLLabel" destination="6py-LY-0GV" id="5ye-oP-E99"/>
+                        <outlet property="yearLabel" destination="ihw-tl-OHx" id="Tao-Nd-FtW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iab-JV-ETS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
