@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailsVC: UIViewController {
+class DetailsVC: MainVC {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
@@ -17,26 +17,26 @@ class DetailsVC: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
     
-    var mainVC = MainVC()
-    var detailsData = DetailsData(id: String(), name: String(), year: String(), category: String(), description: String(), imageURL: String(), promoURL: String(), rate: String(), hour: String())
-    var urlDetails: String?
-    let decoder = JSONEncoder()
+//    var mainVC = MainVC()
+//    var detailsData = DetailsData(id: String(), name: String(), year: String(), category: String(), description: String(), imageURL: String(), promoURL: String(), rate: String(), hour: String())
+//    var urlDetails = MainVC().urlDetails
+//    var detailsData = MainVC().detailsData
+//    let decoder = JSONEncoder()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        uploadFomURLDetails(url: urlDetails!) { jsonResDetails in
+//        let urlDetails = URL(string: "\(urlDetailsString)")
+//        mainVC.uploadFomURLDetails(url: urlDetails!) { jsonResDetails in
 //            self.detailsData = jsonResDetails
-//            print(jsonResDetails)
 //            print(self.detailsData)
-//            print(self.mainVC.urlDetails!)
-//        }
 //        print(urlDetails)
+//        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        print(mainVC.urlDetailsNew)
+        print(detailsData)
         nameLabel.text = "\(detailsData.name)"
         yearLabel.text = "Year: \(detailsData.year)"
         categoryLabel.text = "Category: \(detailsData.category)"

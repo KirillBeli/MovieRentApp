@@ -42,35 +42,44 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell?.detailTextLabel?.text = moviesData.movies[indexPath.row].id
         return cell!
     }
-    
+   
+    var urlDetailsString: String = ""
     //MARK: - Did select row at
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+   @IBAction func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+//        urlDetails = tableView.didselec
         let urlDeatilsId = "\(moviesData.movies[indexPath.row].id).txt"
-        let urlDetails = "\(urlModel.urlDetailsBase)\(urlDeatilsId)"
-//        let urlDetails = URL(string: "\(urlModel.urlDetailsBase)\(urlDeatilsId)")
-       
-        let detailsVC = DetailsVC()
-        detailsVC.urlDetails = urlDetails
-//        print(detailsVC.urlDetails)
+        urlDetailsString = "\(urlModel.urlDetailsBase)\(urlDeatilsId)"
+
+        print("urlDetailsString:\(urlDetailsString)")
         
     }
     
-    
-    
-    override func viewDidDisappear(_ animated: Bool) {
+    //MARK: - URLSession from URLDetails
+    func uploadFomURLDetails(url: URL, completion: @escaping (DetailsData) -> Void) {
+        let session = URLSession.shared
+        let urlDetails = URL(string: "\(urlDetailsString)")
+        let dataTask = session.dataTask(with: urlDetails!) { jsonData, response, error in
+            if jsonData != nil && error == nil {
+                do {
+                    let jsonResDetails = try JSONDecoder().decode(DetailsData.self, from: jsonData!)
+                    self.decoder.outputFormatting = .prettyPrinted
+                    completion(jsonResDetails)
+                } catch {
+                    print("parse error \(error)")
+                }
+            }
+        }.resume()
+    }
+   
+   @IBAction override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsVC
-//        print(vc.urlDetails)
-        
-        
+//        let urlDetails = URL(string: "\(urlDetailsString)")
+//       let detailsVC: DetailsVC = DetailsVC(nibName: nil, bundle: nil)
 //        uploadFomURLDetails(url: urlDetails!) { jsonResDetails in
 //            self.detailsData = jsonResDetails
-//            //                        print(jsonResDetails)
-//            //                        print(self.detailsData)
-//            //                    print(self.urlDetailsNew!)
+//            detailsVC.detailsData = self.detailsData
+//            print(self.detailsData)
 //        }
     }
 }
