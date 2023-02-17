@@ -23,11 +23,6 @@ class RequestManager {
                 do {
                     let jsonRes1 = try JSONDecoder().decode(BannerData.self, from: jsonData!)
                     self.decoder.outputFormatting = .prettyPrinted
-//                    var imageUrl = jsonRes1.banner[1].imageUrl!
-//                    if !imageUrl.contains("https") {
-//                        imageUrl = imageUrl.replacingOccurrences(of: "http", with: "https")
-//                    }
-//                    imageUrl = imageUrl.replacingOccurrences(of: ".jpg.jpg", with: ".jpg")
                     completion(jsonRes1)
                 } catch {
                     print("parse error \(error)")
@@ -69,7 +64,6 @@ class RequestManager {
             }
         }.resume()
     }
-    
     
     
 }

@@ -115,7 +115,7 @@
                                 <rect key="frame" x="0.0" y="87" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="V6k-2Y-OPL" id="fW4-aj-plW"/>
+                                    <outlet property="delegate" destination="V6k-2Y-OPL" id="Won-vm-zPP"/>
                                 </connections>
                             </searchBar>
                         </subviews>
@@ -135,6 +135,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="searchBar" destination="P96-C8-lP7" id="hX2-R4-TnD"/>
                         <outlet property="tableView" destination="tWd-vx-qhN" id="t7Q-i2-wyB"/>
                     </connections>
                 </viewController>
@@ -161,7 +162,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yera:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihw-tl-OHx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihw-tl-OHx">
                                 <rect key="frame" x="16" y="183" width="172" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

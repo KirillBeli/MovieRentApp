@@ -21,7 +21,7 @@ class LaunchVC: UIViewController {
         RequestManager.shared.uploadFomURL2(url: urlModel.url2!) { jsonRes2 in
             self.moviesData = jsonRes2
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             self.goToNextPage()
         }
     }

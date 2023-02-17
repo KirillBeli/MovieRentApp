@@ -24,7 +24,7 @@ struct Banner: Codable {
 }
 //MARK: - Movies
 struct MoviesData: Codable {
-    let movies: [Movies]
+    var movies: [Movies]
 }
 struct Movies: Codable {
     let id: String

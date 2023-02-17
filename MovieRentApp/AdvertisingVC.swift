@@ -11,7 +11,7 @@ import UIKit
 class AdvertisingVC: UIViewController, URLSessionDelegate {
     
     @IBOutlet weak var imageUpload: UIImageView!
-   
+    
     var urlModel = URLModel()
     var launchVC = LaunchVC()
     var bannerData = BannerData(banner: [Banner(isImage: String(), imageUrl: String(), videoUrl: String())])
@@ -35,9 +35,9 @@ class AdvertisingVC: UIViewController, URLSessionDelegate {
             imageUrl = imageUrl.replacingOccurrences(of: ".jpg.jpg", with: ".jpg")
             let url = URL(string: "\(imageUrl)")
             self.downloadImage(url: url!)
-         }
+        }
     }
-  
+    
     //MARK: - Download Session
     func downloadImage(url: URL) {
         let session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
@@ -52,8 +52,8 @@ class AdvertisingVC: UIViewController, URLSessionDelegate {
     //MARK: - Segue to next view
     func goToNextPage() {
         performSegue(withIdentifier: "MainVC", sender: nil)
-//        let MainVC = storyboard?.instantiateViewController (withIdentifier: "MainVC") as! MainVC
-//        present (MainVC, animated: true)
+        //        let MainVC = storyboard?.instantiateViewController (withIdentifier: "MainVC") as! MainVC
+        //        present (MainVC, animated: true)
     }
 }
 //MARK: - Download URLSession of image
